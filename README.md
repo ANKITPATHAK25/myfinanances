@@ -83,32 +83,6 @@ src/
 ## Deployment
 
 This project is ready to deploy on **Vercel**, **Netlify**, or any Node.js hosting platform.
-
-### Vercel (recommended)
-
-1. Push to GitHub
-2. Import the repository on [vercel.com](https://vercel.com)
-3. Deploy — zero configuration needed
-
-### Docker
-
-```dockerfile
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
-FROM node:18-alpine AS runner
-WORKDIR /app
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/static ./.next/static
-EXPOSE 3000
-CMD ["node", "server.js"]
-```
-
 ## License
 
 MIT
